@@ -1,252 +1,278 @@
 # 🚀 Quick Start Guide - Handcrafted Haven
 
-Este guia vai te ajudar a configurar o projeto localmente e começar a desenvolver.
+This guide will help you set up the project locally and start developing.
 
-## 📋 Pré-requisitos
+## 📋 Prerequisites
 
-Antes de começar, certifique-se de ter instalado:
+Before starting, make sure you have installed:
 
-- **Node.js** 18.x ou superior ([Download](https://nodejs.org/))
-- **PostgreSQL** 14 ou superior ([Download](https://www.postgresql.org/download/))
-- **pnpm** (recomendado) ou npm
+* **Node.js** 18.x or higher ([Download](https://nodejs.org/))
+* **PostgreSQL** 14 or higher ([Download](https://www.postgresql.org/download/))
+* **pnpm** (recommended) or npm
+
   ```bash
   npm install -g pnpm
   ```
 
-## 🎯 Passos para Inicialização
+## 🎯 Initialization Steps
 
-### 1. Instalar Dependências
+### 1. Install Dependencies
 
 ```bash
 pnpm install
-# ou
+# or
 npm install
 ```
 
-### 2. Configurar o Banco de Dados
+### 2. Set Up the Database
 
-#### a) Criar o banco de dados PostgreSQL
+#### a) Create the PostgreSQL database
 
 ```bash
-# Acesse o PostgreSQL
+# Access PostgreSQL
 psql postgres
 
-# Crie o banco de dados
+# Create the database
 CREATE DATABASE handcrafted_haven;
 
-# Crie um usuário (opcional)
-CREATE USER seu_usuario WITH PASSWORD 'sua_senha';
-GRANT ALL PRIVILEGES ON DATABASE handcrafted_haven TO seu_usuario;
+# Create a user (optional)
+CREATE USER your_user WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE handcrafted_haven TO your_user;
 
-# Saia do psql
+# Exit psql
 \q
 ```
 
-#### b) Configurar variáveis de ambiente
+#### b) Configure environment variables
 
-Copie o arquivo de exemplo e configure suas credenciais:
+Copy the example file and set your credentials:
 
 ```bash
 cp .env.example .env
 ```
 
-Edite o arquivo `.env`:
+Edit the `.env` file:
 
 ```env
 # Database
-DATABASE_URL="postgresql://seu_usuario:sua_senha@localhost:5432/handcrafted_haven?schema=public"
+DATABASE_URL="postgresql://your_user:your_password@localhost:5432/handcrafted_haven?schema=public"
 
 # NextAuth
 NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="seu-secret-key-seguro-aqui" # Gere com: openssl rand -base64 32
+NEXTAUTH_SECRET="your-secure-secret-key-here" # Generate with: openssl rand -base64 32
 
-# Vercel Blob Storage (opcional para desenvolvimento local)
+# Vercel Blob Storage (optional for local development)
 BLOB_READ_WRITE_TOKEN=""
 ```
 
-### 3. Executar Migrações do Prisma
+### 3. Run Prisma Migrations
 
 ```bash
-# Gerar o Prisma Client
+# Generate Prisma Client
 pnpm db:generate
 
-# Criar as tabelas no banco de dados
+# Create tables in the database
 pnpm db:push
 
-# Ou use migrations para ambientes de produção
+# Or use migrations for production environments
 pnpm db:migrate
 ```
 
-### 4. (Opcional) Visualizar o Banco de Dados
+### 4. (Optional) Visualize the Database
 
-O Prisma Studio é uma interface visual para o seu banco:
+Prisma Studio is a visual interface for your database:
 
 ```bash
 pnpm db:studio
 ```
 
-Isso abrirá uma interface web em `http://localhost:5555` onde você pode visualizar e editar dados.
+This will open a web interface at `http://localhost:5555` where you can view and edit data.
 
-### 5. Iniciar o Servidor de Desenvolvimento
+### 5. Start the Development Server
 
 ```bash
 pnpm dev
 ```
 
-O aplicativo estará disponível em [http://localhost:3000](http://localhost:3000)
+The app will be available at [http://localhost:3000](http://localhost:3000)
 
-## 🧪 Testando o Sistema
+---
 
-### Criar sua primeira conta
+## 🧪 Testing the System
 
-1. Acesse [http://localhost:3000/register](http://localhost:3000/register)
-2. Preencha o formulário de registro
-3. Escolha entre "Buyer" ou "Seller"
-4. Faça login em [http://localhost:3000/login](http://localhost:3000/login)
+### Create your first account
 
-### Estrutura de Usuários
+1. Go to [http://localhost:3000/register](http://localhost:3000/register)
+2. Fill out the registration form
+3. Choose between “Buyer” or “Seller”
+4. Log in at [http://localhost:3000/login](http://localhost:3000/login)
 
-- **BUYER**: Usuários que navegam e compram produtos
-- **SELLER**: Artesãos que vendem produtos (tem acesso ao dashboard de vendedor)
+### User Roles
 
-## 📁 Estrutura do Projeto
+* **BUYER**: Users who browse and purchase products
+* **SELLER**: Artisans who sell products (with access to the seller dashboard)
+
+---
+
+## 📁 Project Structure
 
 ```
 handcrafted-haven/
 ├── src/
 │   ├── app/                      # Next.js App Router
-│   │   ├── (auth)/              # Rotas de autenticação (login, register)
+│   │   ├── (auth)/              # Auth routes (login, register)
 │   │   ├── api/                 # API Routes
-│   │   │   └── auth/            # Endpoints de autenticação
-│   │   ├── layout.tsx           # Layout raiz
-│   │   └── page.tsx             # Página inicial
-│   ├── components/              # Componentes React
-│   │   ├── ui/                  # Componentes de UI (Button, Input, etc)
-│   │   └── layout/              # Componentes de layout (Header, Footer)
-│   ├── lib/                     # Utilitários e configurações
-│   │   ├── auth.ts              # Configuração NextAuth
-│   │   ├── prisma.ts            # Cliente Prisma
-│   │   └── utils.ts             # Funções auxiliares
-│   └── types/                   # Definições TypeScript
+│   │   │   └── auth/            # Authentication endpoints
+│   │   ├── layout.tsx           # Root layout
+│   │   └── page.tsx             # Home page
+│   ├── components/              # React components
+│   │   ├── ui/                  # UI components (Button, Input, etc.)
+│   │   └── layout/              # Layout components (Header, Footer)
+│   ├── lib/                     # Utilities and configs
+│   │   ├── auth.config.ts       # NextAuth configuration
+│   │   ├── auth.ts              # BCrypt and Zod configuration
+│   │   ├── prisma.ts            # Prisma client
+│   │   └── utils.ts             # Helper functions
+│   └── types/                   # TypeScript definitions
 ├── prisma/
-│   └── schema.prisma            # Schema do banco de dados
-├── public/                      # Arquivos estáticos
+│   └── schema.prisma            # Database schema
+├── public/                      # Static files
 └── package.json
 ```
 
-## 🎨 Stack Tecnológica
+---
 
-- **Frontend**: Next.js 14+ (App Router), React 19, TypeScript
-- **Styling**: Tailwind CSS
-- **Database**: PostgreSQL + Prisma ORM
-- **Authentication**: NextAuth.js v5
-- **Validation**: Zod
-- **Icons**: Lucide React
+## 🎨 Tech Stack
 
-## 🔧 Scripts Disponíveis
+* **Frontend**: Next.js 14+ (App Router), React 19, TypeScript
+* **Styling**: Tailwind CSS
+* **Database**: PostgreSQL + Prisma ORM
+* **Authentication**: NextAuth.js v5
+* **Validation**: Zod
+* **Icons**: Lucide React
+
+---
+
+## 🔧 Available Scripts
 
 ```bash
-# Desenvolvimento
-pnpm dev                  # Inicia o servidor de desenvolvimento
+# Development
+pnpm dev                  # Starts dev server
 
 # Build
-pnpm build               # Cria build de produção
-pnpm start               # Inicia servidor de produção
+pnpm build               # Creates production build
+pnpm start               # Starts production server
 
 # Database
-pnpm db:generate         # Gera Prisma Client
-pnpm db:push             # Sincroniza schema com o banco
-pnpm db:migrate          # Cria e aplica migrations
-pnpm db:studio           # Abre Prisma Studio
+pnpm db:generate         # Generates Prisma Client
+pnpm db:push             # Syncs schema to DB
+pnpm db:migrate          # Creates/applies migrations
+pnpm db:studio           # Opens Prisma Studio
 
-# Qualidade de Código
-pnpm lint                # Executa ESLint
-pnpm type-check          # Verifica tipos TypeScript
+# Code Quality
+pnpm lint                # Runs ESLint
+pnpm type-check          # Runs TypeScript checks
 ```
 
-## 🚀 Próximas Etapas de Desenvolvimento
+---
 
-Agora que o projeto está configurado, as próximas fases incluem:
+## 🚀 Next Development Steps
 
-### Fase 3: Seller Profiles (Em progresso)
-- Dashboard do vendedor
-- Edição de perfil
-- Página pública do vendedor
+Now that the project is set up, upcoming phases include:
 
-### Fase 4: Product System
-- CRUD de produtos
-- Upload de imagens
-- Categorização
+### Phase 3: Seller Profiles (In progress)
 
-### Fase 5: Browse & Filter
-- Catálogo de produtos
-- Sistema de busca
-- Filtros avançados
+* Seller dashboard
+* Profile editing
+* Public seller page
 
-### Fase 6: Reviews & Ratings
-- Sistema de avaliação
-- Comentários
+### Phase 4: Product System
 
-### Fase 7: Optimization
-- SEO
-- Acessibilidade
-- Performance
+* Product CRUD
+* Image upload
+* Categorization
 
-### Fase 8: Deployment
-- Deploy no Vercel
-- CI/CD
+### Phase 5: Browse & Filter
 
-## 🐛 Solução de Problemas
+* Product catalog
+* Search system
+* Advanced filters
 
-### Erro: "Cannot find module '@prisma/client'"
+### Phase 6: Reviews & Ratings
+
+* Review system
+* Comments
+
+### Phase 7: Optimization
+
+* SEO
+* Accessibility
+* Performance
+
+### Phase 8: Deployment
+
+* Deploy to Vercel
+* CI/CD setup
+
+---
+
+## 🐛 Troubleshooting
+
+### Error: "Cannot find module '@prisma/client'"
 
 ```bash
 pnpm db:generate
 ```
 
-### Erro de conexão com PostgreSQL
+### PostgreSQL connection errors
 
-Verifique se:
-- PostgreSQL está rodando: `pg_isready`
-- As credenciais no `.env` estão corretas
-- O banco de dados existe
+Check if:
 
-### Erro: "NEXTAUTH_SECRET is not set"
+* PostgreSQL is running: `pg_isready`
+* Credentials in `.env` are correct
+* The database exists
 
-Gere um secret seguro:
+### Error: "NEXTAUTH_SECRET is not set"
+
+Generate a secure secret:
 
 ```bash
 openssl rand -base64 32
 ```
 
-E adicione no `.env`
-
-## 📚 Recursos Úteis
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Prisma Documentation](https://www.prisma.io/docs)
-- [NextAuth.js Documentation](https://next-auth.js.org/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-
-## 💡 Dicas de Desenvolvimento
-
-1. **Use TypeScript**: Aproveite o type checking para evitar erros
-2. **Componentes Reutilizáveis**: Os componentes em `src/components/ui` são base para outros componentes
-3. **Prisma Studio**: Use para visualizar e testar dados rapidamente
-4. **Server Actions**: Para forms, considere usar Server Actions do Next.js 14+
-5. **Acessibilidade**: Sempre teste com leitores de tela e teclado
-
-## 🤝 Contribuindo
-
-Este é um projeto de grupo. Para contribuir:
-
-1. Crie uma branch para sua feature: `git checkout -b feature/nome-da-feature`
-2. Commit suas mudanças: `git commit -m 'Add: descrição da feature'`
-3. Push para a branch: `git push origin feature/nome-da-feature`
-4. Abra um Pull Request
+Add it to `.env`
 
 ---
 
-**Dúvidas?** Entre em contato com o time ou abra uma issue no GitHub!
+## 📚 Useful Resources
 
+* [Next.js Documentation](https://nextjs.org/docs)
+* [Prisma Documentation](https://www.prisma.io/docs)
+* [NextAuth.js Documentation](https://next-auth.js.org/)
+* [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+* [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+
+---
+
+## 💡 Development Tips
+
+1. **Use TypeScript** to avoid common bugs
+2. **Reusability**: Components in `src/components/ui` are base building blocks
+3. **Prisma Studio** helps you inspect and test data quickly
+4. **Server Actions**: Consider them for forms in Next.js 14+
+5. **Accessibility**: Always test with screen readers and keyboard navigation
+
+---
+
+## 🤝 Contributing
+
+This is a group project. To contribute:
+
+1. Create a new branch: `git checkout -b feature/your-feature-name`
+2. Commit your changes: `git commit -m 'Add: feature description'`
+3. Push the branch: `git push origin feature/your-feature-name`
+4. Open a Pull Request
+
+---
+
+**Questions?** Contact the team or open an issue on GitHub!

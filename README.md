@@ -16,7 +16,7 @@ It serves as a small marketplace where artisans can create profiles, list handcr
 
 | Category | Link | Description |
 |----------|------|-------------|
-| 📚 **Documentation Index** | [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) | All documentation |
+| 📚 **Getting Started** | [GETTING_STARTED.md](GETTING_STARTED.md) | Initial configurations and project overview |
 
 ---
 
@@ -159,8 +159,9 @@ See **[GETTING_STARTED.md](GETTING_STARTED.md)**
 │   │   ├── seller/                   # Seller-specific components
 │   │   └── providers.tsx             # Context providers
 │   │
-│   ├── lib/                          # Utilities
-│   │   ├── auth.ts                   # NextAuth configuration
+│   ├── lib/                          # Utilities and configs
+│   │   ├── auth.config.ts            # NextAuth configuration
+│   │   ├── auth.ts                   # BCrypt and Zod configuration
 │   │   ├── prisma.ts                 # Prisma client
 │   │   └── utils.ts                  # Helper functions
 │   │
@@ -192,11 +193,10 @@ See **[GETTING_STARTED.md](GETTING_STARTED.md)**
 
 ## 📚 Documentation
 
-We have **15 comprehensive documentation files** to help you navigate and understand the project:
+We have **a detailed documentation file** to help you navigate and understand the project:
 
 ### **Essential Docs (Start Here)**
-1. **[DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)** - Master index of all documentation
-2. **[GETTING_STARTED.md](GETTING_STARTED.md)** - Complete setup guide
+1. **[GETTING_STARTED.md](GETTING_STARTED.md)** - Complete setup guide
 
 
 ---
@@ -243,7 +243,6 @@ This project is created for educational purposes at BYU-Idaho.
 |----------|-----|
 | **Live Site** | [Coming Soon - Vercel] |
 | **Repository** | [https://github.com/adlermo/wdd430-handcrafted-haven](https://github.com/adlermo/wdd430-handcrafted-haven) |
-| **Documentation** | See [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) |
 | **Project Board** | [GitHub Projects](https://github.com/adlermo/wdd430-handcrafted-haven/projects) |
 
 ---
@@ -264,9 +263,8 @@ Built with modern web technologies and best practices:
 
 **Need help?**
 
-1. Check **[DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)** for all docs
-2. See **[GETTING_STARTED.md](GETTING_STARTED.md)** for setup issues
-3. Create a GitHub issue for bugs or features
+1. See **[GETTING_STARTED.md](GETTING_STARTED.md)** for setup issues
+2. Create a GitHub issue for bugs or features
 
 ---
 

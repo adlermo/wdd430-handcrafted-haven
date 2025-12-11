@@ -1,0 +1,28 @@
+{
+  "name": "Handcrafted Haven",
+  "short_name": "Handcrafted",
+  "description": "Marketplace for handcrafted artisan products",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4E9D8",
+  "theme_color": "#C26849",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

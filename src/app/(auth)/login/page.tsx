@@ -7,13 +7,8 @@ import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ShoppingBag } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -71,9 +66,7 @@ export default function LoginPage() {
         <Card>
           <CardHeader>
             <CardTitle>Sign in to your account</CardTitle>
-            <CardDescription>
-              Enter your email and password to access your account
-            </CardDescription>
+            <CardDescription>Enter your email and password to access your account</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -114,10 +107,7 @@ export default function LoginPage() {
                     type="checkbox"
                     className="h-4 w-4 text-primary-600 focus:ring-primary-600 border-gray-300 rounded"
                   />
-                  <label
-                    htmlFor="remember-me"
-                    className="ml-2 block text-sm text-gray-700"
-                  >
+                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
                     Remember me
                   </label>
                 </div>
@@ -138,10 +128,7 @@ export default function LoginPage() {
 
               <p className="text-center text-sm text-gray-600">
                 Don&apos;t have an account?{' '}
-                <Link
-                  href="/register"
-                  className="font-medium text-primary-600 hover:text-primary-500"
-                >
+                <Link href="/register" className="font-medium text-primary-600 hover:text-primary-500">
                   Sign up
                 </Link>
               </p>
@@ -152,3 +139,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

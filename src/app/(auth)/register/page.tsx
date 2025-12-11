@@ -6,13 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ShoppingBag } from 'lucide-react';
 
 export default function RegisterPage() {
@@ -90,9 +84,7 @@ export default function RegisterPage() {
         <Card>
           <CardHeader>
             <CardTitle>Create your account</CardTitle>
-            <CardDescription>
-              Sign up to start your journey with us
-            </CardDescription>
+            <CardDescription>Sign up to start your journey with us</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -160,10 +152,7 @@ export default function RegisterPage() {
                       className="h-4 w-4 text-primary-600 focus:ring-primary-600 border-gray-300"
                       disabled={isLoading}
                     />
-                    <label
-                      htmlFor="buyer"
-                      className="ml-3 block text-sm text-gray-700"
-                    >
+                    <label htmlFor="buyer" className="ml-3 block text-sm text-gray-700">
                       Buyer - Browse and purchase handcrafted items
                     </label>
                   </div>
@@ -176,10 +165,7 @@ export default function RegisterPage() {
                       className="h-4 w-4 text-primary-600 focus:ring-primary-600 border-gray-300"
                       disabled={isLoading}
                     />
-                    <label
-                      htmlFor="seller"
-                      className="ml-3 block text-sm text-gray-700"
-                    >
+                    <label htmlFor="seller" className="ml-3 block text-sm text-gray-700">
                       Seller - Sell your handcrafted products
                     </label>
                   </div>
@@ -192,10 +178,7 @@ export default function RegisterPage() {
 
               <p className="text-center text-sm text-gray-600">
                 Already have an account?{' '}
-                <Link
-                  href="/login"
-                  className="font-medium text-primary-600 hover:text-primary-500"
-                >
+                <Link href="/login" className="font-medium text-primary-600 hover:text-primary-500">
                   Sign in
                 </Link>
               </p>
@@ -206,3 +189,4 @@ export default function RegisterPage() {
     </div>
   );
 }
+

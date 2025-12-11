@@ -108,7 +108,6 @@ O aplicativo estará disponível em [http://localhost:3000](http://localhost:300
 
 - **BUYER**: Usuários que navegam e compram produtos
 - **SELLER**: Artesãos que vendem produtos (tem acesso ao dashboard de vendedor)
-- **ADMIN**: Administradores do sistema (acesso total)
 
 ## 📁 Estrutura do Projeto
 

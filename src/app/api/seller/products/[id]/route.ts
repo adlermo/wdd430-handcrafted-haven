@@ -16,7 +16,7 @@ const productUpdateSchema = z.object({
 // GET single product
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth();
@@ -24,6 +24,8 @@ export async function GET(
     if (!session || (session.user.role !== 'SELLER' && session.user.role !== 'ADMIN')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    const { id } = await params;
 
     const sellerProfile = await prisma.sellerProfile.findUnique({
       where: { userId: session.user.id },
@@ -35,7 +37,7 @@ export async function GET(
 
     const product = await prisma.product.findFirst({
       where: {
-        id: params.id,
+        id,
         sellerId: sellerProfile.id,
       },
       include: {
@@ -63,7 +65,7 @@ export async function GET(
 // UPDATE product
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth();
@@ -74,6 +76,8 @@ export async function PUT(
 
     const body = await request.json();
     const validatedData = productUpdateSchema.parse(body);
+
+    const { id } = await params;
 
     const sellerProfile = await prisma.sellerProfile.findUnique({
       where: { userId: session.user.id },
@@ -86,7 +90,7 @@ export async function PUT(
     // Verify product belongs to seller
     const existingProduct = await prisma.product.findFirst({
       where: {
-        id: params.id,
+        id,
         sellerId: sellerProfile.id,
       },
     });
@@ -108,7 +112,7 @@ export async function PUT(
 
     // Update product
     const product = await prisma.product.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name: validatedData.name,
         description: validatedData.description,
